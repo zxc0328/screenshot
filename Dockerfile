@@ -60,9 +60,12 @@ RUN set -ex \
   && ln -s /opt/yarn/bin/yarn /usr/local/bin/yarnpkg \
   && rm yarn-v$YARN_VERSION.tar.gz.asc yarn-v$YARN_VERSION.tar.gz
 
+RUN wget -O /usr/local/bin/dumb-init https://github.com/Yelp/dumb-init/releases/download/v1.2.0/dumb-init_1.2.0_amd64
+RUN chmod +x /usr/local/bin/dumb-init
+
 RUN apt-get update -qqy \
   && apt-get -qqy install \
-       dumb-init gnupg wget ca-certificates apt-transport-https \
+       gnupg wget ca-certificates apt-transport-https \
        ttf-wqy-zenhei build-essential \
   && rm -rf /var/lib/apt/lists/* /var/cache/apt/*
 
