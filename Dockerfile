@@ -2,9 +2,9 @@ FROM debian:stable-slim
 # FROM ubuntu:xenial
 # FROM google/debian:jessie
 
-MAINTAINER Zhao Xinhui <hzzhaoxinhui@corp.netease.com>
+MAINTAINER Zhao Xinhui <ccnuzindex@gmail.com>
 
-ARG DEBIAN_FRONTEND=noninteractive
+ARG DEBIAN_FRONTEND=interactive
 
 RUN apt-get update -qqy \
   && apt-get -qqy install \
@@ -24,5 +24,5 @@ RUN useradd headless --shell /bin/bash --create-home \
   && echo 'ALL ALL = (ALL) NOPASSWD: ALL' >> /etc/sudoers \
   && echo 'headless:nopassword' | chpasswd
 
-RUN curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash - \
+RUN curl -sL https://deb.nodesource.com/setup_8.x  \
     && apt-get install -y nodejs
