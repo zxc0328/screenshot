@@ -11,7 +11,7 @@ console.log(`Koa on port: 3000`);
 
 const capture = function (url) {
     return new Promise((resolve, reject) => {
-        CDP(async (client) => {
+        CDP({ host: "0.0.0.0" }, async (client) => {
             const { Page } = client;
 
             await Page.enable();
