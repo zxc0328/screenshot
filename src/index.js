@@ -15,13 +15,12 @@ const capture = function (url) {
             const { Page } = client;
 
             await Page.enable();
-            await Page.navigate({ url: url});
+            await Page.navigate({ url: url });
             Page.loadEventFired(async () => {
-                setTimeout(async () => {
-                    const { data } = await Page.captureScreenshot();
-                    console.log(Buffer.from(data, 'base64'))
-                    resolve(Buffer.from(data, 'base64'));
-                }, 0);
+                const { data } = await Page.captureScreenshot();
+                console.log(Buffer.from(data, 'base64'));
+                resolve(Buffer.from(data, 'base64'));
+                client.close();
             });
         }).on('error', (err) => {
             console.error(err);
